@@ -11,6 +11,11 @@ pipeline {
                 bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m pip install -r requirements.txt"
             }
         }
+        stage('Install Playwright Browsers') {
+            steps {
+                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m playwright install"
+            }
+        }
         stage('Run Playwright Tests') {
             steps {
                 bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m playwright test"
@@ -30,3 +35,5 @@ pipeline {
         }
     }
 }
+
+
