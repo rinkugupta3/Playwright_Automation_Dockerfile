@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
@@ -22,10 +23,12 @@ pipeline {
             }
         }
     }
+
     post {
         always {
             echo 'Cleaning up...'
-            // Any clean-up steps you need to perform
+            // Archive the screenshots from the 'screenshots' directory
+            archiveArtifacts artifacts: 'screenshots/**/*', allowEmptyArchive: true
         }
         success {
             echo 'Pipeline succeeded!'
@@ -35,5 +38,3 @@ pipeline {
         }
     }
 }
-
-
