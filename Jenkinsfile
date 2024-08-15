@@ -17,7 +17,7 @@ pipeline {
         stage('Set up Python environment') {
             steps {
                 // Install Python virtual environment
-                sh 'python -m venv ${VENV_DIR}'
+                sh 'python3 -m venv ${VENV_DIR}'  // Ensure correct Python version
                 // Activate virtual environment and install dependencies
                 sh '''
                 . ${VENV_DIR}/bin/activate
@@ -39,7 +39,7 @@ pipeline {
 
         stage('Publish Results') {
             steps {
-                // Publish test results (optional, configure as needed)
+                // Publish test results (ensure correct path)
                 junit '**/reports/*.xml'
             }
         }
@@ -47,7 +47,7 @@ pipeline {
 
     post {
         always {
-            // Cleanup
+            // Cleanup (optional, depends on your use case)
             sh 'deactivate || true'
             deleteDir()
         }
