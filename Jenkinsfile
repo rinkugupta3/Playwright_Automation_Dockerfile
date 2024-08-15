@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Run Playwright Tests') {
             steps {
-                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m playwright test"
+                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m pytest"
             }
         }
     }
