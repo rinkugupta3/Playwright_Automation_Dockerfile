@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     stages {
         stage('Checkout') {
             steps {
@@ -14,11 +13,10 @@ pipeline {
         }
         stage('Run Playwright Tests') {
             steps {
-                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe pytest tests/test_login.py"
+                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m playwright test tests/test_login.py"
             }
         }
     }
-
     post {
         always {
             echo 'Cleaning up...'
