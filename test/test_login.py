@@ -1,6 +1,6 @@
 #Run test with following command line:
 #(venv) PS C:\Users\dhira\Desktop\Dhiraj HP Laptop\Projects\Playwright_Automation_DesignSetup>
-#(venv) PS C:\Users\dhira\Desktop\Dhiraj HP Laptop\Projects\Playwright_Automation_DesignSetup> pytest tests/test_login.py
+#(venv) PS C:\Users\dhira\Desktop\Dhiraj HP Laptop\Projects\Playwright_Automation_DesignSetup> pytest test/test_login.py
 
 import sys
 import os
