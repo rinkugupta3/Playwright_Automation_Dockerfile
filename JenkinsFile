@@ -1,0 +1,61 @@
+pipeline {
+    agent any
+
+    environment {
+        // Virtual environment directory
+        VENV_DIR = 'venv'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone the repository
+                git branch: 'main', url: 'https://github.com/your-repo/orangehrm_automation.git'
+            }
+        }
+
+        stage('Set up Python environment') {
+            steps {
+                // Install Python virtual environment
+                sh 'python -m venv ${VENV_DIR}'
+                // Activate virtual environment and install dependencies
+                sh '''
+                . ${VENV_DIR}/bin/activate
+                pip install --upgrade pip
+                pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Run Playwright Tests') {
+            steps {
+                // Activate virtual environment and run tests
+                sh '''
+                . ${VENV_DIR}/bin/activate
+                pytest --headless --maxfail=1 --disable-warnings -v
+                '''
+            }
+        }
+
+        stage('Publish Results') {
+            steps {
+                // Publish test results (optional, configure as needed)
+                junit '**/reports/*.xml'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Cleanup
+            sh 'deactivate || true'
+            deleteDir()
+        }
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}

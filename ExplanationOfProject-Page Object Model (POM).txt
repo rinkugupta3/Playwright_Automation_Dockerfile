@@ -1,0 +1,34 @@
+Question: How would you design an automation framework using Playwright for a web application?
+Answer:
+When designing an automation framework using Playwright,
+I would start by setting up a modular structure based on the Page Object Model (POM).
+This helps separate the test scripts from the page-specific code, making it easier to maintain and scale.
+
+1) Project Structure:
+Create separate directories for page objects, test scripts, test data, and utilities.
+Use a configuration file to store environment variables, test URLs, and other settings.
+
+2) Page Objects:
+For each page of the web application, create a corresponding class in the page object directory.
+Each class will encapsulate the page elements and actions (e.g., login, submit forms).
+
+3) Test Scripts:
+Write test scripts in the test directory using a BDD approach with Playwright and a framework like Cucumber.
+This allows writing human-readable scenarios in Gherkin syntax.
+The test scripts will call methods from the page objects to perform actions and assertions.
+
+4) Utilities:
+Develop utility functions for common actions, such as handling authentication tokens, waiting for elements,
+or taking screenshots.
+
+5) Test Data:
+Store test data separately in JSON or CSV files and load it dynamically into your tests to support data-driven testing.
+
+6) CI/CD Integration:
+Integrate the framework with CI/CD tools like Jenkins.
+Configure Playwright to run headlessly during the CI pipeline and generate test reports automatically.
+
+7) Reporting:
+Implement detailed logging and reporting using tools like Allure or Playwright’s built-in reporter,
+which will help analyze test results.
+This framework would allow for scalable, maintainable, and efficient test automation.
