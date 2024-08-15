@@ -3,33 +3,19 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the repository from Git
                 git branch: 'main', url: 'https://github.com/rinkugupta3/Playwright_Automation_DesignSetup'
             }
         }
         stage('Set up Python environment') {
             steps {
-                script {
-                    def pythonPath = "C:/Users/dhira/AppData/Local/Programs/Python/Python311"
-                    def pythonExe = "${pythonPath}/python.exe"
-                    // Verify Python installation
-                    bat "${pythonExe} --version"
-                    // Install dependencies (if needed)
-                    bat "${pythonExe} -m pip install -r requirements.txt"
-                }
+                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m pip install -r requirements.txt"
             }
         }
         stage('Run Playwright Tests') {
             steps {
-                script {
-                    def pythonPath = "C:C:/Users/dhira/AppData/Local/Programs/Python/Python311"
-                    def pythonExe = "${pythonPath}/python.exe"
-                    // Run your Playwright tests
-                    bat "${pythonExe} -m playwright tests/test_login.py"
-                }
+                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m playwright test"
             }
         }
-    }
     post {
         always {
             echo 'Cleaning up...'
