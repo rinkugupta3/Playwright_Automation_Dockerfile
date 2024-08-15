@@ -5,12 +5,12 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the repository from Git
-                git 'https://github.com/rinkugupta3/Playwright_Automation_DesignSetup'
+                git branch: 'main', url: 'https://github.com/rinkugupta3/Playwright_Automation_DesignSetup'
             }
         }
+
         stage('Set up Python environment') {
             steps {
-                // Ensure Python is installed and set up your environment
                 script {
                     def pythonPath = "C:\\Python39"  // Update with your Python path
                     def pythonExe = "${pythonPath}\\python.exe"
@@ -23,22 +23,22 @@ pipeline {
                 }
             }
         }
+
         stage('Run Playwright Tests') {
             steps {
-                // Run your Playwright tests
                 script {
                     def pythonPath = "C:\\Python39"  // Update with your Python path
                     def pythonExe = "${pythonPath}\\python.exe"
 
-                    // Run your test script (update 'test_script.py' with your actual script)
+                    // Run your Playwright tests
                     bat "${pythonExe} -m playwright test"
                 }
             }
         }
     }
+
     post {
         always {
-            // This block will always run, regardless of the pipeline status
             echo 'Cleaning up...'
             // Any clean-up steps you need to perform
         }
