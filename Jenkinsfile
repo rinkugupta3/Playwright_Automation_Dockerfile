@@ -25,7 +25,7 @@ pipeline {
                     def pythonPath = "C:C:/Users/dhira/AppData/Local/Programs/Python/Python311"
                     def pythonExe = "${pythonPath}/python.exe"
                     // Run your Playwright tests
-                    bat "${pythonExe} -m playwright test"
+                    bat "${pythonExe} -m playwright tests/test_login.py"
                 }
             }
         }
