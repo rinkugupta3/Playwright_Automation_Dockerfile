@@ -1,48 +1,46 @@
 pipeline {
     agent any
 
-    environment {
-        // Virtual environment directory
-        VENV_DIR = 'venv'
-    }
-
     stages {
         stage('Checkout') {
             steps {
-                // Clone the repository
-                git branch: 'main', url: 'https://github.com/rinkugupta3/Playwright_Automation_DesignSetup'
+                // Checkout the repository from Git
+                git 'https://github.com/rinkugupta3/Playwright_Automation_DesignSetup'
             }
         }
-
         stage('Set up Python environment') {
             steps {
-                // Install Python virtual environment
-                sh 'python3 -m venv ${VENV_DIR}'  // Ensure correct Python version
-                // Activate virtual environment and install dependencies
-                sh '''
-                . ${VENV_DIR}/bin/activate
-                pip install --upgrade pip
-                pip install -r requirements.txt
-                '''
+                // Ensure Python is installed and set up your environment
+                script {
+                    def pythonPath = "C:\\Python39"  // Update with your Python path
+                    def pythonExe = "${pythonPath}\\python.exe"
+
+                    // Verify Python installation
+                    bat "${pythonExe} --version"
+
+                    // Install dependencies (if needed)
+                    bat "${pythonExe} -m pip install -r requirements.txt"
+                }
             }
         }
-
         stage('Run Playwright Tests') {
             steps {
-                // Activate virtual environment and run tests
-                sh '''
-                . ${VENV_DIR}/bin/activate
-                pytest --headless --maxfail=1 --disable-warnings -v
-                '''
+                // Run your Playwright tests
+                script {
+                    def pythonPath = "C:\\Python39"  // Update with your Python path
+                    def pythonExe = "${pythonPath}\\python.exe"
+
+                    // Run your test script (update 'test_script.py' with your actual script)
+                    bat "${pythonExe} -m playwright test"
+                }
             }
         }
     }
-
     post {
         always {
-            // Cleanup
-            sh 'deactivate || true'
-            deleteDir()
+            // This block will always run, regardless of the pipeline status
+            echo 'Cleaning up...'
+            // Any clean-up steps you need to perform
         }
         success {
             echo 'Pipeline succeeded!'
@@ -52,4 +50,3 @@ pipeline {
         }
     }
 }
-
