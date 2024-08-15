@@ -12,7 +12,7 @@ pipeline {
         stage('Set up Python environment') {
             steps {
                 script {
-                    def pythonPath = "C:\\Python39"  // Update with your Python path
+                    def pythonPath = "C:\Users\dhira\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Python 3.11"  // Update with your Python path
                     def pythonExe = "${pythonPath}\\python.exe"
 
                     // Verify Python installation
@@ -27,7 +27,7 @@ pipeline {
         stage('Run Playwright Tests') {
             steps {
                 script {
-                    def pythonPath = "C:\\Python39"  // Update with your Python path
+                    def pythonPath = "C:\Users\dhira\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Python 3.11"  // Update with your Python path
                     def pythonExe = "${pythonPath}\\python.exe"
 
                     // Run your Playwright tests
