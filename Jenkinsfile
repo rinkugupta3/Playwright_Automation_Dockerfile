@@ -10,7 +10,7 @@ pipeline {
         stage('Set up Python environment') {
             steps {
                 script {
-                    def pythonPath = "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe"
+                    def pythonPath = "C:/Users/dhira/AppData/Local/Programs/Python/Python311"
                     def pythonExe = "${pythonPath}/python.exe"
                     // Verify Python installation
                     bat "${pythonExe} --version"
@@ -22,7 +22,7 @@ pipeline {
         stage('Run Playwright Tests') {
             steps {
                 script {
-                    def pythonPath = "C:C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe"
+                    def pythonPath = "C:C:/Users/dhira/AppData/Local/Programs/Python/Python311"
                     def pythonExe = "${pythonPath}/python.exe"
                     // Run your Playwright tests
                     bat "${pythonExe} -m playwright test"
