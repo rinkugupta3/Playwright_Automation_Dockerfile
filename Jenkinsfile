@@ -36,18 +36,11 @@ pipeline {
                 '''
             }
         }
-
-        stage('Publish Results') {
-            steps {
-                // Publish test results (ensure correct path)
-                junit '**/reports/*.xml'
-            }
-        }
     }
 
     post {
         always {
-            // Cleanup (optional, depends on your use case)
+            // Cleanup
             sh 'deactivate || true'
             deleteDir()
         }
@@ -59,3 +52,4 @@ pipeline {
         }
     }
 }
+
