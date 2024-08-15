@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clone the repository
-                git branch: 'main', url: 'https://github.com/your-repo/orangehrm_automation.git'
+                git branch: 'main', url: 'https://github.com/rinkugupta3/Playwright_Automation_DesignSetup'
             }
         }
 
