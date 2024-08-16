@@ -22,6 +22,21 @@ pipeline {
                 bat "${PYTHON_PATH} -m playwright install"
             }
         }
+
+        stage('Run Playwright Tests - Dev Environment') {
+            steps {
+                bat "echo Running Playwright Tests in Dev Environment"
+                bat "${PYTHON_PATH} -m pytest --verbose"
+            }
+        }
+        stage('Run Playwright Tests - Staging Environment') {
+            steps {
+                bat "set ENV=staging && ${PYTHON_PATH} -m pytest --verbose"
+            }
+        }
+    }
+
+        /*
         stage('Run Playwright Tests - Dev Environment') {
             steps {
                 script {
@@ -30,7 +45,7 @@ pipeline {
                         }
                     }
             }
-
+        */
 
         // Uncomment the following stage if you want to run tests in the Staging environment
         /*
@@ -46,7 +61,6 @@ pipeline {
             }
         }
         */
-    }
 
     post {
         always {
