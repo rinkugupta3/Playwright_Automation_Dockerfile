@@ -34,20 +34,8 @@ pipeline {
             }
         }
 
-    '''
-        stage('Run Playwright Tests - Staging Environment') {
-            environment {
-                ENV = 'staging'
-            }
-            steps {
-                script {
-                    // Set environment variable for Staging environment
-                    bat "set ENV=staging && ${PYTHON_PATH} -m pytest"
-                }
-            }
-        }
-    }
-    '''
+
+
 
     post {
         always {
