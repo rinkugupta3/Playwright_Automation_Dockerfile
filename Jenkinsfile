@@ -29,9 +29,7 @@ pipeline {
             steps {
                 script {
                     // Set environment variable for Dev environment
-                    bat "set ENV=dev"
-                    // Run the Playwright tests
-                    bat "${PYTHON_PATH} -m pytest --env=dev"
+                    bat "set ENV=dev && ${PYTHON_PATH} -m pytest"
                 }
             }
         }
@@ -42,9 +40,7 @@ pipeline {
             steps {
                 script {
                     // Set environment variable for Staging environment
-                    bat "set ENV=staging"
-                    // Run the Playwright tests
-                    bat "${PYTHON_PATH} -m pytest --env=staging"
+                    bat "set ENV=staging && ${PYTHON_PATH} -m pytest"
                 }
             }
         }
@@ -64,4 +60,3 @@ pipeline {
         }
     }
 }
-
