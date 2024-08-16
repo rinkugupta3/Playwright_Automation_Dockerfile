@@ -22,10 +22,10 @@ pipeline {
             }
         }
     }
-    post {
+   post {
         always {
             echo 'Cleaning up...'
-            // Any clean-up steps you need to perform
+            archiveArtifacts artifacts: 'screenshots/**/*', allowEmptyArchive: true
         }
         success {
             echo 'Pipeline succeeded!'
