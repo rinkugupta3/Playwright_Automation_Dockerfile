@@ -43,7 +43,6 @@ def perform_logout(page: Page):
             Locate the user dropdown element by capturing all dropdowns and selecting the right one.
             If there are multiple dropdowns, capture all and then select the one you need based on additional criteria like visibility or position
             selector can be used when the exact text or attributes of the element are not known or are changing dynamically.
-
             CSS Selector Breakdown
             span: This targets all <span> elements on the page.
             i: This targets all <i> elements that are children of the <span> elements.
