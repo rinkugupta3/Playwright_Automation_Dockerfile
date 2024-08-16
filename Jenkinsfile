@@ -33,6 +33,8 @@ pipeline {
                 }
             }
         }
+
+    '''
         stage('Run Playwright Tests - Staging Environment') {
             environment {
                 ENV = 'staging'
@@ -45,6 +47,7 @@ pipeline {
             }
         }
     }
+    '''
 
     post {
         always {
