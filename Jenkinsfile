@@ -23,16 +23,14 @@ pipeline {
             }
         }
         stage('Run Playwright Tests - Dev Environment') {
-            environment {
-                ENV = 'dev'
-            }
             steps {
                 script {
-                    // Set environment variable for Dev environment
-                    bat "set ENV=dev && ${PYTHON_PATH} -m pytest"
-                }
+                    env.ENV = 'dev'
+                    bat "${PYTHON_PATH} -m pytest"
+                        }
+                    }
             }
-        }
+
 
         // Uncomment the following stage if you want to run tests in the Staging environment
         /*
