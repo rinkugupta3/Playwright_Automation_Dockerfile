@@ -1,0 +1,28 @@
+Explanation:
+1) Imports and Path Setup:
+
+Import necessary libraries and adjust the system path to include the parent directory so that the pages and config modules can be found.
+
+2) find_user_dropdown(page) Function:
+
+Attempts to locate the user dropdown element by checking for known texts.
+Raises an exception if the dropdown is not found.
+
+3)login(page) Function:
+
+Navigates to the login page, waits for the username field, and uses the LoginPage class to perform login.
+Waits for successful navigation to the dashboard and ensures the page is fully loaded.
+
+4) logout(page) Function:
+
+Attempts to find and click the user dropdown, then clicks the 'Logout' button.
+Captures a screenshot if a TimeoutError occurs.
+
+5) test_successful_login() Function:
+
+Sets up Playwright, performs login, captures a screenshot, performs logout, and captures another screenshot.
+Handles redirection to the login page and captures screenshots in case of errors or timeouts.
+
+6) Entry Point:
+
+Runs the test_successful_login() function when the script is executed directly.
