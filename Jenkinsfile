@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        // Define the path to Python and Playwright
+        PYTHON_PATH = "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -9,17 +14,38 @@ pipeline {
         }
         stage('Set up Python environment') {
             steps {
-                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m pip install -r requirements.txt"
+                bat "${PYTHON_PATH} -m pip install -r requirements.txt"
             }
         }
         stage('Install Playwright Browsers') {
             steps {
-                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m playwright install"
+                bat "${PYTHON_PATH} -m playwright install"
             }
         }
-        stage('Run Playwright Tests') {
+        stage('Run Playwright Tests - Dev Environment') {
+            environment {
+                ENV = 'dev'
+            }
             steps {
-                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m pytest"
+                script {
+                    // Set environment variable for Dev environment
+                    bat "set ENV=dev"
+                    // Run the Playwright tests
+                    bat "${PYTHON_PATH} -m pytest --env=dev"
+                }
+            }
+        }
+        stage('Run Playwright Tests - Staging Environment') {
+            environment {
+                ENV = 'staging'
+            }
+            steps {
+                script {
+                    // Set environment variable for Staging environment
+                    bat "set ENV=staging"
+                    // Run the Playwright tests
+                    bat "${PYTHON_PATH} -m pytest --env=staging"
+                }
             }
         }
     }
@@ -38,3 +64,4 @@ pipeline {
         }
     }
 }
+
