@@ -34,6 +34,8 @@ pipeline {
             }
         }
 
+        // Uncomment the following stage if you want to run tests in the Staging environment
+        /*
         stage('Run Playwright Tests - Staging Environment') {
             environment {
                 ENV = 'staging'
@@ -45,6 +47,7 @@ pipeline {
                 }
             }
         }
+        */
     }
 
     post {
@@ -61,3 +64,4 @@ pipeline {
         }
     }
 }
+
