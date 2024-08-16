@@ -1,11 +1,5 @@
 pipeline {
     agent any
-
-    environment {
-        // Define the path to Python and Playwright
-        PYTHON_PATH = "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe"
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -14,59 +8,24 @@ pipeline {
         }
         stage('Set up Python environment') {
             steps {
-                bat "${PYTHON_PATH} -m pip install -r requirements.txt"
+                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m pip install -r requirements.txt"
             }
         }
         stage('Install Playwright Browsers') {
             steps {
-                bat "${PYTHON_PATH} -m playwright install"
+                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m playwright install"
             }
         }
-
-        stage('Run Playwright Tests - Dev Environment') {
+        stage('Dev - Run Playwright Tests') {
             steps {
-                bat "echo Running Playwright Tests in Dev Environment"
-                bat "${PYTHON_PATH} -m pytest --verbose"
-            }
-        }
-        stage('Run Playwright Tests - Staging Environment') {
-            steps {
-                bat "set ENV=staging && ${PYTHON_PATH} -m pytest --verbose"
+                bat "C:/Users/dhira/AppData/Local/Programs/Python/Python311/python.exe -m pytest"
             }
         }
     }
-
-        /*
-        stage('Run Playwright Tests - Dev Environment') {
-            steps {
-                script {
-                    env.ENV = 'dev'
-                    bat "${PYTHON_PATH} -m pytest"
-                        }
-                    }
-            }
-        */
-
-        // Uncomment the following stage if you want to run tests in the Staging environment
-        /*
-        stage('Run Playwright Tests - Staging Environment') {
-            environment {
-                ENV = 'staging'
-            }
-            steps {
-                script {
-                    // Set environment variable for Staging environment
-                    bat "set ENV=staging && ${PYTHON_PATH} -m pytest"
-                }
-            }
-        }
-        */
-
     post {
         always {
             echo 'Cleaning up...'
-            // Archive the screenshots from the 'screenshots' directory
-            archiveArtifacts artifacts: 'screenshots/**/*', allowEmptyArchive: true
+            // Any clean-up steps you need to perform
         }
         success {
             echo 'Pipeline succeeded!'
