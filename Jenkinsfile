@@ -3,7 +3,11 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/rinkugupta3/Playwright_Automation_DesignSetup'
+                // Checkout from dev-env branch
+                git branch: 'dev-env', url: 'https://github.com/rinkugupta3/Playwright_Automation_DesignSetup'
+
+                // To switch to main branch, comment out the above line and uncomment the line below:
+                // git branch: 'main', url: 'https://github.com/rinkugupta3/Playwright_Automation_DesignSetup'
             }
         }
         stage('Set up Python environment') {
