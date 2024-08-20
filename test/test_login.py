@@ -1,6 +1,6 @@
 # Run test with following command line:
 # PS C:\Users\dhira\Desktop\Dhiraj HP Laptop\Projects\Playwright_Automation_DesignSetup>
-# Playwright configured as "headless" mode by adding "True" and no browser will popup
+# Playwright configured as "headless" mode by adding "True" and no browser will popup but results will be in screen shot
 # PS C:\Users\dhira\Desktop\Dhiraj HP Laptop\Projects\Playwright_Automation_DesignSetup> pytest test/test_login.py
 
 import sys
