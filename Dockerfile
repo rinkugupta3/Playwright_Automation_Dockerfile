@@ -35,4 +35,5 @@ RUN python -m playwright install-deps
 
 # Run Playwright tests with Xvfb
 # CMD ["xvfb-run", "pytest"]
-CMD ["sh", "-c", "echo 'Starting tests...' && ls -la && pytest -v"]
+# CMD ["sh", "-c", "echo 'Starting tests...' && ls -la && pytest -v"]
+CMD ["xvfb-run", "-a", "pytest", "-v"]

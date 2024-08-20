@@ -1,9 +1,11 @@
 # Run test with following command line:
 # PS C:\Users\dhira\Desktop\Dhiraj HP Laptop\Projects\Playwright_Automation_DesignSetup>
+# Playwright configured as "headless" mode by adding "True" and no browser will popup
 # PS C:\Users\dhira\Desktop\Dhiraj HP Laptop\Projects\Playwright_Automation_DesignSetup> pytest test/test_login.py
 
 import sys
 import os
+
 # Add the parent directory to the system path so Python can find modules from there.
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
@@ -12,12 +14,14 @@ from pages.login_page import LoginPage
 from config.config import Config
 from playwright.sync_api import sync_playwright, Page
 
+
 def navigate_to_login_page(page: Page):
     """
     Navigate to the login page and ensure it's fully loaded.
     """
     page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
     page.wait_for_selector('input[name="username"]', timeout=10000)
+
 
 def perform_login(page: Page):
     """
@@ -30,6 +34,7 @@ def perform_login(page: Page):
     # Wait until the URL indicates the dashboard and the network is idle
     page.wait_for_url('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index', timeout=30000)
     page.wait_for_load_state('networkidle')
+
 
 def perform_logout(page: Page):
     """
@@ -64,13 +69,14 @@ def perform_logout(page: Page):
         page.screenshot(path=os.path.join('screenshots', 'logout_timeout_error.png'))
         raise
 
+
 def test_successful_login():
     """
     Main test function to perform login and logout.
     """
     # Initialize Playwright and launch the browser
     with sync_playwright() as p:
-        #browser = p.chromium.launch(headless=False)
+        # browser = p.chromium.launch(headless=False)
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
 
@@ -108,6 +114,7 @@ def test_successful_login():
 
         finally:
             browser.close()  # Ensure the browser is closed after the test
+
 
 # Entry point for running the test directly
 if __name__ == "__main__":
